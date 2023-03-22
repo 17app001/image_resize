@@ -21,14 +21,23 @@ def resize(request):
         # 調整圖像大小
         img = img.resize((width, height))
 
-        # 儲存調整大小後的圖像
-        file_path = os.path.join(settings.MEDIA_ROOT, 'resized-image.jpg')
-        img.save(file_path, format='JPEG')
+        # # 儲存調整大小後的圖像
+        # file_path = os.path.join(settings.MEDIA_ROOT, 'resized-image.jpg')
+        # img.save(file_path, format='JPEG')
 
-        # 返回下載文件的響應
-        response = FileResponse(open(file_path, 'rb'))
-        response['Content-Type'] = 'image/jpeg'
-        response['Content-Disposition'] = 'attachment; filename="resized-image.jpg"'
+        # # 返回下載文件的響應
+        # response = FileResponse(open(file_path, 'rb'))
+        # response['Content-Type'] = 'image/jpeg'
+        # response['Content-Disposition'] = 'attachment; filename="resized-image.jpg"'
+        # return response
+
+        # 调整图像大小
+
+        # 将调整后的图像作为 HTTP 响应返回给客户端
+        response = HttpResponse(content_type='image/jpeg')
+        img.save(response, format='JPEG')
+        response[
+            'Content-Disposition'] = 'attachment; filename="resized-image.jpg"'
         return response
 
     return render(request, 'resize.html')

@@ -4,22 +4,24 @@
 
 <head>
     <title>Resize Image</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 
 <body>
-    <h1>Resize Image</h1>
-    <form id="resize-form">
-        {% csrf_token %}
-        <label for="fileInput">Choose a file:</label>
-        <input type="file" id="fileInput" name="fileInput"><br><br>
-        <label for="widthInput">New width:</label>
-        <input type="number" id="widthInput" name="widthInput" min="1" required><br><br>
-        <label for="heightInput">New height:</label>
-        <input type="number" id="heightInput" name="heightInput" min="1" required><br><br>
-        <input type="submit" value="Resize">
-    </form>
-    <div id="result"></div>
-
+    <div id="container">
+        <h1>Resize Image</h1>
+        <form id="resize-form">
+            {% csrf_token %}
+            <!-- <label for="fileInput">Choose a file:</label> -->
+            <input type="file" id="fileInput" name="fileInput"><br><br>
+            <label for="widthInput">New width:</label>
+            <input type="number" id="widthInput" name="widthInput" min="1" required><br><br>
+            <label for="heightInput">New height:</label>
+            <input type="number" id="heightInput" name="heightInput" min="1" required><br><br>
+            <input type="submit" value="Resize">
+        </form>
+        <div id="result"></div>
+    </div>
     <script src="{% static 'resize-image.js' %}"></script>
 </body>
 
